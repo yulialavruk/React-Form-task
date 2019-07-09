@@ -2,6 +2,7 @@ import React from "react";
 import Basic from "./Basic";
 import Contacts from "./Contacts";
 import Avatar from "./Avatar";
+import Finish from "./Finish";
 
 export default class App extends React.Component {
 	constructor(){
@@ -25,7 +26,8 @@ export default class App extends React.Component {
 				repeatPassword:false,
 				email:false,
 				mobile: false,
-				cite: false
+				cite: false,
+				avatar: false,
 			}
 		}
 	}
@@ -43,7 +45,6 @@ export default class App extends React.Component {
 				avatar: event.target.result
 			})
 		}
-
 		reader.readAsDataURL(event.target.files[0])
 	};
 
@@ -69,6 +70,9 @@ export default class App extends React.Component {
 		}
 		if(this.state.city === ""){
 			errors.city = 'Required'
+		}
+		if(this.state.avatar === ""){
+			errors.avatar = 'Required'
 		}
 		if(Object.keys(errors).length > 0){
 			this.setState({
@@ -102,6 +106,10 @@ export default class App extends React.Component {
 	        	<Avatar 
 	        		value={this.state} 
 	        		onChangeAvatar={this.onChangeAvatar}
+	        		error= {this.state.errors}
+	        	/>
+	        	<Finish 
+	        		value={this.state}
 	        	/>
 	        	<div className="d-flex">
 	        		<button type="button" className="btn btn-secondary">Prev</button>

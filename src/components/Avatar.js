@@ -1,22 +1,23 @@
 import React from "react";
-//import user from "../user.png";
+import user from "../user.png";
 
 export default class Avatar extends React.Component{
 
 	render(){
-		const {onChangeAvatar, value } = this.props;
+		const {onChangeAvatar, value, error } = this.props;
 		return(
 			<div>
-				<div className="form-group">
-					<img scr={value.avatar} alt="" width="100%" height="200px"/>
-					<label htmlFor="avatar">Avatar</label>
+				<img src={value.avatar ? value.avatar : user} alt="" width="200px"/>
+				<div className="custom-file">
 					<input 
 						type="file"
-						className="form-control-file"
+						className="custom-file-input"
 						id="avatar"
 						name="avatar"
 						onChange={onChangeAvatar}
 					/>
+					<label className="custom-file-label" htmlFor="avatar">Choose file</label>
+					{error.avatar ? ( <div className="invalid-feedback">{error.avatar}</div> ) : null}
 				</div>
 			</div>
 		)
