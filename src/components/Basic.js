@@ -12,7 +12,7 @@ const Basic = props =>{
 	    			className="form-control"
 	    			placeholder="Enter firstname"
 	    			name="firstname"
-	    			value={value}
+	    			value={value.firstname}
 	    			onChange={onChange}
 	    		/>
 	    		{error.firstname ? ( <div className="invalid-feedback">{error.firstname}</div> ) : null}
@@ -25,7 +25,7 @@ const Basic = props =>{
 	    			className="form-control"
 	    			placeholder="Enter lastname"
 	    			name="lastname"
-	    			value={value}
+	    			value={value.lastname}
 	    			onChange={onChange}
 	    		/>
 	    		{error.lastname ? ( <div className="invalid-feedback">{error.lastname}</div> ) : null}
@@ -38,7 +38,7 @@ const Basic = props =>{
 	    			className="form-control"
 	    			placeholder="Enter password"
 	    			name="password"
-	    			value={value}
+	    			value={value.password}
 	    			onChange={onChange}
 	    		/>
 	    		{error.password ? ( <div className="invalid-feedback">{error.password}</div> ) : null}
@@ -51,7 +51,7 @@ const Basic = props =>{
 	    			className="form-control"
 	    			placeholder="Enter repeat password"
 	    			name="repeatPassword"
-	    			value={value}
+	    			value={value.repeatPassword}
 	    			onChange={onChange}
 	    		/>
 	    		{error.repeatPassword ? ( <div className="invalid-feedback">{error.repeatPassword}</div> ) : null}
