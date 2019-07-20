@@ -10,6 +10,24 @@ export default class App extends React.Component {
 
 		this.state = {
 			step: 0,
+			stepName: [
+				{
+					id: 1,
+					name: "Basic"
+				},
+				{
+					id: 2,
+					name: "Contacts"
+				},
+				{
+					id: 3,
+					name: "Avatar"
+				},
+				{
+					id: 4,
+					name: "Finish"
+				},
+			],
 			firstname:"",
 			lastname:"",
 			password:"",
@@ -114,23 +132,13 @@ export default class App extends React.Component {
 	    return (
 	     	<div className="form-container card">
 		        <form className="form card-body">
-			        <div className="steps d-flex justify-content-between">
-			        	<div className="step">
-			        		<div className="step-number">1</div>
-			        		<div className="step-title">Basic</div>
-			        	</div>
-			        	<div className="step">
-			        		<div className="step-number">2</div>
-			        		<div className="step-title">Contacts</div>
-			        	</div>
-			        	<div className="step">
-			        		<div className="step-number">3</div>
-			        		<div className="step-title">Avatar</div>
-			        	</div>
-			        	<div className="step">
-			        		<div className="step-number">4</div>
-			        		<div className="step-title">Finish</div>
-			        	</div>
+			        <div className="steps">
+				        {this.state.stepName.map(step =>(
+				        	<div className="step" key={step.id}>
+				        		<div className="step-number">{step.id}</div>
+				        		<div className="step-title">{step.name}</div>
+				        	</div>
+				        ))}
 			        </div>
 	        {this.state.step === 0 &&(
 	        	<Basic 
