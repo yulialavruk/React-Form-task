@@ -12,19 +12,19 @@ export default class App extends React.Component {
 			step: 0,
 			stepName: [
 				{
-					id: 1,
+					id: 0,
 					name: "Basic"
 				},
 				{
-					id: 2,
+					id: 1,
 					name: "Contacts"
 				},
 				{
-					id: 3,
+					id: 2,
 					name: "Avatar"
 				},
 				{
-					id: 4,
+					id: 3,
 					name: "Finish"
 				},
 			],
@@ -74,7 +74,7 @@ export default class App extends React.Component {
 			step: nextStep
 		})
 
-		console.log("state", this.state);
+		//console.log("state", this.state);
 	};
 
 	onNext = event =>{
@@ -95,10 +95,10 @@ export default class App extends React.Component {
 		}
 		if (this.state.step === 1) {
 			if(this.state.email.length < 5){
-			errors.email = 'Must be 5 characters or more'
+			errors.email = 'Invalid email address'
 			}
 			if(this.state.mobile.length < 10){
-				errors.mobile = 'Must be 10 characters or more'
+				errors.mobile = 'Invalid mobile'
 			}
 			if(this.state.city === ""){
 				errors.city = 'Required'
@@ -123,19 +123,19 @@ export default class App extends React.Component {
 				step: nextStep
 			})
 
-			console.log("state", this.state);
+			//console.log("state", this.state);
 		}
 	}
 
 	render() {
-		//console.log(this.state)
 	    return (
 	     	<div className="form-container card">
 		        <form className="form card-body">
-			        <div className="steps">
+			        <div className="steps mb-4">
 				        {this.state.stepName.map(step =>(
-				        	<div className="step" key={step.id}>
-				        		<div className="step-number">{step.id}</div>
+				        	<div className={this.state.step === step.id ? "step step-active" : this.state.step > step.id ? "step step-finish" : "step"} key={step.id}>
+				        		<div 
+				        			className="step-number">{step.id + 1}</div>
 				        		<div className="step-title">{step.name}</div>
 				        	</div>
 				        ))}
@@ -163,18 +163,18 @@ export default class App extends React.Component {
 	        	<Finish 
 	        		value={this.state}
 	        	/>)}
-	        	<div className="d-flex">
+	        	<div className="d-flex justify-content-center mt-4">
 	        	{this.state.step < 3 ?(
 	        		<div>
-	        		<button 
-	        			type="button" 
-	        			className="btn btn-secondary" 
-	        			onClick={this.onPrev}
-	        			disabled={this.state.step === 0}
-	        		>
-	        			Prev
-	        		</button>
-	        		<button type="button" className="btn btn-secondary" onClick={this.onNext}>Next</button>
+		        		<button 
+		        			type="button" 
+		        			className="btn btn-light mr-4" 
+		        			onClick={this.onPrev}
+		        			disabled={this.state.step === 0}
+		        		>
+		        			Prev
+		        		</button>
+		        		<button type="button" className="btn btn-secondary" onClick={this.onNext}>Next</button>
 	        		</div>)
 	        		:
 	        		<button type="button" className="btn btn-primary" onClick={()=>{window.location.reload()}}>Reset</button>}

@@ -7,8 +7,8 @@ export default class Avatar extends React.Component{
 		const {onChangeAvatar, value, error } = this.props;
 		return(
 			<div>
-				<img src={value.avatar ? value.avatar : user} alt="" width="200px"/>
-				<div className="custom-file">
+				<img src={value.avatar ? value.avatar : user} alt="" width="100%"/>
+				<div className="custom-file mt-2">
 					<input 
 						type="file"
 						className="custom-file-input"
