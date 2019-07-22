@@ -46,32 +46,49 @@ export default class App extends React.Component {
 	};
 
 	onChange = event =>{
+		const values = {...this.state.values};
+		values[event.target.name] = event.target.value
 		this.setState({
-			[event.target.name]: event.target.value
+			values: values
 		})
+		console.log(values)
 	};
 
 	onChangeAvatar = event =>{
 		const reader = new FileReader();
 		reader.onload = event =>{
 			this.setState({
-				avatar: event.target.result
+				values:{
+					avatar: event.target.result
+				}
 			})
 		}
 		reader.readAsDataURL(event.target.files[0])
 	};
 
 	onPrev = event =>{
-		const nextStep = this.state.step - 1
-		this.setState({
-			errors: {},
-			step: nextStep
-		})
-
-		//console.log("state", this.state);
+		this.setState(prevState =>({
+			step: prevState.step - 1
+		}))
 	};
 
 	onNext = event =>{
+		const errors = this.getErrorsByValues();
+
+		if(Object.keys(errors).length > 0){
+			this.setState({
+				errors
+			})
+		}
+		else{
+			this.setState(prevState => ({
+				errors: {},
+				step: prevState.step + 1
+			}))
+		}
+	};
+
+	getErrorsByValues = () =>{
 		const errors = {};
 		if(this.state.step === 0){
 			if (this.state.values.firstname.length < 5) {
@@ -83,12 +100,12 @@ export default class App extends React.Component {
 			if(this.state.values.password.length < 6){
 				errors.password = 'Must be 6 characters or more'
 			}
-			if(this.state.values.password !==this.state.repeatPassword){
+			if(this.state.values.password !==this.state.values.repeatPassword){
 				errors.repeatPassword = 'Must be equal password'
 			}
 		}
 		if (this.state.step === 1) {
-			if(this.state.email.length < 5){
+			if(this.state.values.email.length < 5){
 			errors.email = 'Invalid email address'
 			}
 			if(this.state.values.mobile.length < 10){
@@ -104,20 +121,8 @@ export default class App extends React.Component {
 				errors.avatar = 'Required'
 			}
 		}
-
-		if(Object.keys(errors).length > 0){
-			this.setState({
-				errors: errors
-			})
-		}
-		else{
-			const nextStep = this.state.step + 1
-			this.setState({
-				errors: {},
-				step: nextStep
-			})
-		}
-	}
+		return errors;
+	};
 
 	render() {
 	    return (
