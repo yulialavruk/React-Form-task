@@ -3,7 +3,7 @@ import React from "react";
 export default class Navigation extends React.Component{
 
 	render(){
-		const {stepActive, onPrev, onNext} = this.props;
+		const {stepActive, onPrev, onNext, onReset} = this.props;
 		return(
 			<div className="d-flex justify-content-center mt-4">
 	        	{stepActive < 3 ?(
@@ -28,7 +28,7 @@ export default class Navigation extends React.Component{
 	        		<button 
 	        			type="button" 
 	        			className="btn btn-primary" 
-	        			onClick={()=>{window.location.reload()}}
+	        			onClick={onReset}
 	        		>
 	        			Reset
 	        		</button>

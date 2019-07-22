@@ -34,15 +34,8 @@ export default class App extends React.Component {
 				cite: false,
 				avatar: false,
 			}
-		}
-	}
-	
-	getOptionsItems = items =>{
-		return items.map(item =>(
-			<option key={item.id} value={item.id}>
-				{item.name}
-			</option>
-		))
+		};
+		this.initialState = {...this.state};
 	};
 
 	onChange = event =>{
@@ -51,19 +44,8 @@ export default class App extends React.Component {
 		this.setState({
 			values: values
 		})
-		console.log(values)
-	};
-
-	onChangeAvatar = event =>{
-		const reader = new FileReader();
-		reader.onload = event =>{
-			this.setState({
-				values:{
-					avatar: event.target.result
-				}
-			})
-		}
-		reader.readAsDataURL(event.target.files[0])
+		console.log(values);
+		console.log(this.initialState);
 	};
 
 	onPrev = event =>{
@@ -86,6 +68,10 @@ export default class App extends React.Component {
 				step: prevState.step + 1
 			}))
 		}
+	};
+
+	onReset = event =>{
+		this.setState(this.initialState);
 	};
 
 	getErrorsByValues = () =>{
@@ -133,35 +119,35 @@ export default class App extends React.Component {
 				        	stepActive={this.state.step}
 				        />
 			        </div>
-	        {this.state.step === 0 &&(
-	        	<Basic 
-	        		values={this.state.values} 
-	        		onChange={this.onChange} 
-	        		error={this.state.errors}
-	        	/>)}
-	        {this.state.step === 1 &&(
-	        	<Contacts 
-	        		values={this.state.values} 
-	        		onChange={this.onChange} 
-	        		error={this.state.errors}
-	        		getOptionsItems={this.getOptionsItems}
-	        	/>)}
-	        {this.state.step === 2 &&(
-	        	<Avatar 
-	        		values={this.state.values} 
-	        		onChangeAvatar={this.onChangeAvatar}
-	        		error= {this.state.errors}
-	        	/>)}
-	        {this.state.step === 3 &&(
-	        	<Finish 
-	        		values={this.state.values}
-	        	/>)}
-	        	<Navigation 
-	        		stepActive={this.state.step}
-	        		onNext={this.onNext}
-	        		onPrev={this.onPrev}
-	        	/>
-	        </form>
+			        {this.state.step === 0 &&(
+			        	<Basic 
+			        		values={this.state.values} 
+			        		onChange={this.onChange} 
+			        		error={this.state.errors}
+			        	/>)}
+			        {this.state.step === 1 &&(
+			        	<Contacts 
+			        		values={this.state.values} 
+			        		onChange={this.onChange} 
+			        		error={this.state.errors}
+			        	/>)}
+			        {this.state.step === 2 &&(
+			        	<Avatar 
+			        		values={this.state.values} 
+			        		onChange={this.onChange}
+			        		error= {this.state.errors}
+			        	/>)}
+			        {this.state.step === 3 &&(
+			        	<Finish 
+			        		values={this.state.values}
+			        	/>)}
+			        	<Navigation 
+			        		stepActive={this.state.step}
+			        		onNext={this.onNext}
+			        		onPrev={this.onPrev}
+			        		onReset={this.onReset}
+			        	/>
+	        	</form>
 	      	</div>
 	    );
 	}

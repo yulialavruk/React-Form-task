@@ -5,6 +5,14 @@ import cities from "../data/cities";
 
 export default class Contacts extends React.Component{
 	
+	getOptionsItems = items =>{
+		return items.map(item =>(
+			<option key={item.id} value={item.id}>
+				{item.name}
+			</option>
+		))
+	};
+
 	getUpdateCities = countryValue => {
 	    const updateCities = [];
 	    for (let key in cities) {
@@ -16,7 +24,7 @@ export default class Contacts extends React.Component{
     };
 
 	render(){
-		const { values, onChange, error, getOptionsItems } = this.props;
+		const { values, onChange, error } = this.props;
 		const updateCities = this.getUpdateCities(values.country);
 		return(
 			<div>
@@ -31,7 +39,7 @@ export default class Contacts extends React.Component{
 						value={values.email}
 						onChange={onChange}
 					/>
-					{error.email ? ( <div className="invalid-feedback">{error.email}</div> ) : null}
+					{error.email && ( <div className="invalid-feedback">{error.email}</div> )}
 				</div>
 				<div className="form-group">
 					<label htmlFor="mobile">Mobile</label>
@@ -44,7 +52,7 @@ export default class Contacts extends React.Component{
 						value={values.mobile}
 						onChange={onChange}
 					/>
-					{error.mobile ? ( <div className="invalid-feedback">{error.mobile}</div> ) : null}
+					{error.mobile && ( <div className="invalid-feedback">{error.mobile}</div> )}
 				</div>
 				<div className="form-group">
 				    <label htmlFor="country">Country</label>
@@ -55,7 +63,7 @@ export default class Contacts extends React.Component{
 				    	name="country"
 				    	onChange={onChange}
 				    >
-				    	{getOptionsItems(countries)}
+				    	{this.getOptionsItems(countries)}
 				    </select>
 				</div>
 				<div className="form-group">
@@ -70,9 +78,9 @@ export default class Contacts extends React.Component{
 				    	<option>
 							Select city
 						</option>
-				    	{getOptionsItems(updateCities)}
+				    	{this.getOptionsItems(updateCities)}
 				    </select>
-				    {error.city ? ( <div className="invalid-feedback">{error.city}</div> ) : null}
+				    {error.city && ( <div className="invalid-feedback">{error.city}</div> )}
 				</div>
 	    	</div>
 		);

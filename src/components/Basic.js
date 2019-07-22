@@ -16,7 +16,7 @@ export default class Basic extends React.Component{
 		    			value={values.firstname}
 		    			onChange={onChange}
 		    		/>
-		    		{error.firstname ? ( <div className="invalid-feedback">{error.firstname}</div> ) : null}
+		    		{error.firstname && ( <div className="invalid-feedback">{error.firstname}</div> )}
 		    	</div>
 		    	<div className="form-group">
 		    		<label htmlFor="lastname">Lastname</label>
@@ -29,7 +29,7 @@ export default class Basic extends React.Component{
 		    			value={values.lastname}
 		    			onChange={onChange}
 		    		/>
-		    		{error.lastname ? ( <div className="invalid-feedback">{error.lastname}</div> ) : null}
+		    		{error.lastname && ( <div className="invalid-feedback">{error.lastname}</div> )}
 		    	</div>
 		    	<div className="form-group">
 		    		<label htmlFor="password">Password</label>
@@ -42,7 +42,7 @@ export default class Basic extends React.Component{
 		    			value={values.password}
 		    			onChange={onChange}
 		    		/>
-		    		{error.password ? ( <div className="invalid-feedback">{error.password}</div> ) : null}
+		    		{error.password && ( <div className="invalid-feedback">{error.password}</div> )}
 		    	</div>
 		    	<div className="form-group">
 		    		<label htmlFor="repeatPassword">Password</label>
@@ -55,7 +55,7 @@ export default class Basic extends React.Component{
 		    			value={values.repeatPassword}
 		    			onChange={onChange}
 		    		/>
-		    		{error.repeatPassword ? ( <div className="invalid-feedback">{error.repeatPassword}</div> ) : null}
+		    		{error.repeatPassword && ( <div className="invalid-feedback">{error.repeatPassword}</div> )}
 		    	</div>
 		    	<fieldset className="form-group">
 		    		<div>Gender</div>

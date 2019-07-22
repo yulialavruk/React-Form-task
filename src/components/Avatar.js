@@ -3,8 +3,23 @@ import user from "../user.png";
 
 export default class Avatar extends React.Component{
 
+	onChangeAvatar = event =>{
+		if(event.target.files.length){
+			const reader = new FileReader();
+			reader.onload = event =>{
+				this.props.onChange({
+					target: {
+						name: "avatar",
+						value: event.target.result
+					}
+				})
+			}
+			reader.readAsDataURL(event.target.files[0])
+		}
+	};
+
 	render(){
-		const {onChangeAvatar, values, error } = this.props;
+		const { values, error } = this.props;
 		return(
 			<div>
 				<img src={values.avatar ? values.avatar : user} alt="" width="100%"/>
@@ -14,10 +29,10 @@ export default class Avatar extends React.Component{
 						className="custom-file-input"
 						id="avatar"
 						name="avatar"
-						onChange={onChangeAvatar}
+						onChange={this.onChangeAvatar}
 					/>
 					<label className="custom-file-label" htmlFor="avatar">Choose file</label>
-					{error.avatar ? ( <div className="invalid-feedback">{error.avatar}</div> ) : null}
+					{error.avatar && ( <div className="invalid-feedback">{error.avatar}</div> )}
 				</div>
 			</div>
 		)

@@ -20,7 +20,13 @@ export default class Finish extends React.Component{
 					<div className="col-12">
 						<div><b>Email: </b> {values.email}</div>
 						<div><b>Mobile: </b> {values.mobile}</div>
-						<div><b>Location: </b> {countries[values.country-1].name}, {cities[values.city].name}</div>
+						<div><b>Location: </b> 
+							{countries.map(item =>(
+								item.id === Number(values.country) ? item.name : null
+								))
+							},  
+							{cities[values.city].name}
+						</div>
 					</div>
 				</div>
 			</div>
