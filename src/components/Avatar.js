@@ -4,10 +4,10 @@ import user from "../user.png";
 export default class Avatar extends React.Component{
 
 	render(){
-		const {onChangeAvatar, value, error } = this.props;
+		const {onChangeAvatar, values, error } = this.props;
 		return(
 			<div>
-				<img src={value.avatar ? value.avatar : user} alt="" width="100%"/>
+				<img src={values.avatar ? values.avatar : user} alt="" width="100%"/>
 				<div className="custom-file mt-2">
 					<input 
 						type="file"

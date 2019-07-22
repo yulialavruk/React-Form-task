@@ -2,7 +2,7 @@ import React from "react";
 
 export default class Basic extends React.Component{
 	render(){
-		const {value, onChange, error, gender} = this.props;
+		const {values, onChange, error} = this.props;
 		return(
 			<div>
 				<div className="form-group">
@@ -13,7 +13,7 @@ export default class Basic extends React.Component{
 		    			className="form-control"
 		    			placeholder="Enter firstname"
 		    			name="firstname"
-		    			value={value.firstname}
+		    			value={values.firstname}
 		    			onChange={onChange}
 		    		/>
 		    		{error.firstname ? ( <div className="invalid-feedback">{error.firstname}</div> ) : null}
@@ -26,7 +26,7 @@ export default class Basic extends React.Component{
 		    			className="form-control"
 		    			placeholder="Enter lastname"
 		    			name="lastname"
-		    			value={value.lastname}
+		    			value={values.lastname}
 		    			onChange={onChange}
 		    		/>
 		    		{error.lastname ? ( <div className="invalid-feedback">{error.lastname}</div> ) : null}
@@ -39,7 +39,7 @@ export default class Basic extends React.Component{
 		    			className="form-control"
 		    			placeholder="Enter password"
 		    			name="password"
-		    			value={value.password}
+		    			value={values.password}
 		    			onChange={onChange}
 		    		/>
 		    		{error.password ? ( <div className="invalid-feedback">{error.password}</div> ) : null}
@@ -52,7 +52,7 @@ export default class Basic extends React.Component{
 		    			className="form-control"
 		    			placeholder="Enter repeat password"
 		    			name="repeatPassword"
-		    			value={value.repeatPassword}
+		    			value={values.repeatPassword}
 		    			onChange={onChange}
 		    		/>
 		    		{error.repeatPassword ? ( <div className="invalid-feedback">{error.repeatPassword}</div> ) : null}
@@ -66,7 +66,7 @@ export default class Basic extends React.Component{
 			        		name="gender" 
 			        		id="female" 
 			        		value = "female"
-			        		checked={gender === "female"}
+			        		checked={values.gender === "female"}
 			        		onChange={onChange}
 			        	/>
 			        	<label className="form-check-label" htmlFor="female">
@@ -80,7 +80,7 @@ export default class Basic extends React.Component{
 			        		name="gender" 
 			        		id="male" 
 			        		value="male"
-			        		checked={gender === "male"}
+			        		checked={values.gender === "male"}
 			        		onChange={onChange}
 			        	/>
 			        	<label className="form-check-label" htmlFor="male">
