@@ -13,19 +13,25 @@ export default class Contacts extends React.Component{
 		))
 	};
 
-	getUpdateCities = countryValue => {
-	    const updateCities = [];
-	    for (let key in cities) {
-	     	if (cities[key].country === Number(countryValue)) {
-		        updateCities.push({ id: key, name: cities[key].name})
-	      	}
-    	};
-    	return updateCities
+	getCitiesFromCountry = countryValue => {
+		return Object.keys(cities).reduce((acc, cityId) => {
+			if (Number(cities[cityId].country) === Number(countryValue)){
+				acc.push({ id: cityId, name: cities[cityId].name})
+			}
+			return acc
+		}, [])
+	    // const updateCities = [];
+	    // for (let key in cities) {
+	    //  	if (cities[key].country === Number(countryValue)) {
+		   //      updateCities.push({ id: key, name: cities[key].name})
+	    //   	}
+    	// };
+    	// return updateCities
     };
 
 	render(){
 		const { values, onChange, error } = this.props;
-		const updateCities = this.getUpdateCities(values.country);
+		const updateCities = this.getCitiesFromCountry(values.country);
 		return(
 			<div>
 				<div className="form-group">

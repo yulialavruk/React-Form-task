@@ -1,5 +1,5 @@
 import React from "react";
-import user from "../user.png";
+import avatarDefault from "../avatarDefault.png";
 
 export default class Avatar extends React.Component{
 
@@ -22,7 +22,7 @@ export default class Avatar extends React.Component{
 		const { values, error } = this.props;
 		return(
 			<div>
-				<img src={values.avatar ? values.avatar : user} alt="" width="100%"/>
+				<img src={values.avatar ? values.avatar : avatarDefault} alt="" width="100%"/>
 				<div className="custom-file mt-2">
 					<input 
 						type="file"

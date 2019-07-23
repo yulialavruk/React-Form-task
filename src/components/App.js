@@ -11,7 +11,7 @@ export default class App extends React.Component {
 	constructor(){
 		super()
 
-		this.state = {
+		this.initialState = {
 			step: 0,
 			values: {
 				firstname:"",
@@ -36,17 +36,18 @@ export default class App extends React.Component {
 				avatar: false,
 			}
 		};
-		this.initialState = {...this.state};
+		this.state = {...this.initialState};
 	};
 
 	onChange = event =>{
-		const values = {...this.state.values};
-		values[event.target.name] = event.target.value
-		this.setState({
-			values: values
-		})
-		console.log(values);
-		console.log(this.initialState);
+		const name = event.target.name;
+		const value = event.target.value;
+		this.setState(prevState =>({
+			values: {
+				...prevState.values,
+				[name]: value
+			}
+		}))
 	};
 
 	onPrev = event =>{
