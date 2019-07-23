@@ -5,6 +5,7 @@ import Avatar from "./Avatar";
 import Finish from "./Finish";
 import Steps from "./Steps";
 import Navigation from "./Navigation";
+import getErrorsByValues from "./validate";
 
 export default class App extends React.Component {
 	constructor(){
@@ -55,7 +56,7 @@ export default class App extends React.Component {
 	};
 
 	onNext = event =>{
-		const errors = this.getErrorsByValues();
+		const errors = getErrorsByValues(this.state.values, this.state.step);
 
 		if(Object.keys(errors).length > 0){
 			this.setState({
@@ -72,42 +73,6 @@ export default class App extends React.Component {
 
 	onReset = event =>{
 		this.setState(this.initialState);
-	};
-
-	getErrorsByValues = () =>{
-		const errors = {};
-		if(this.state.step === 0){
-			if (this.state.values.firstname.length < 5) {
-				errors.firstname = 'Must be 5 characters or more'
-			}
-			if (this.state.values.lastname.length < 5) {
-				errors.lastname = 'Must be 5 characters or more'
-			}
-			if(this.state.values.password.length < 6){
-				errors.password = 'Must be 6 characters or more'
-			}
-			if(this.state.values.password !==this.state.values.repeatPassword){
-				errors.repeatPassword = 'Must be equal password'
-			}
-		}
-		if (this.state.step === 1) {
-			if(this.state.values.email.length < 5){
-			errors.email = 'Invalid email address'
-			}
-			if(this.state.values.mobile.length < 10){
-				errors.mobile = 'Invalid mobile'
-			}
-			if(this.state.values.city === ""){
-				errors.city = 'Required'
-			}
-		}
-		
-		if(this.state.step === 2){
-			if(this.state.values.avatar === ""){
-				errors.avatar = 'Required'
-			}
-		}
-		return errors;
 	};
 
 	render() {
