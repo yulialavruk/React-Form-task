@@ -1,5 +1,5 @@
 body {
-  background: #fdfdfd; 
+  background: #fdfdfd;
   padding-top: 300px;
 }
 
@@ -8,57 +8,57 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 460px; 
+  width: 460px;
 }
 
 .invalid-feedback {
-  display: block; 
+  display: block;
 }
-.steps{
-	display: flex;
-	justify-content: space-between;
+.steps {
+  display: flex;
+  justify-content: space-between;
 }
-.step{
-	position: relative;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	flex-basis: 0;
-	flex-grow: 1;
+.step {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-basis: 0;
+  flex-grow: 1;
 }
-.step:not(:first-child)::before{
-	position: absolute;
-	content: "";
-	height: 3px;
-	width: 100%;
-	background-color: #B5B5B5;
-	left: -50%;
-	top: 15.5px;
+.step:not(:first-child)::before {
+  position: absolute;
+  content: "";
+  height: 3px;
+  width: 100%;
+  background-color: #b5b5b5;
+  left: -50%;
+  top: 15.5px;
 }
-.step .step-number{
-	z-index: 1;
-	width: 35px;
-	height: 35px;
-	display: flex;
-	border-radius: 50%;
-	background: #B5B5B5;
-	justify-content: center;
-	align-items: center;
-	color: white;
-	font-weight: 800;
-	border: 4px solid white;
+.step .step-number {
+  z-index: 1;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  border-radius: 50%;
+  background: #b5b5b5;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-weight: 800;
+  border: 4px solid white;
 }
-.step.step-active .step-number{
-	background: #19ddfe;
-    border: 4px solid #f26120;
+.step.step-active .step-number {
+  background: #19ddfe;
+  border: 4px solid #f26120;
 }
-.step.step-finish .step-number{
-	background: #f26120;
-    border: 4px solid #f26120;
+.step.step-finish .step-number {
+  background: #f26120;
+  border: 4px solid #f26120;
 }
-.step.step-active:not(:first-child)::before{
-	background: #f26120;
+.step.step-active:not(:first-child)::before {
+  background: #f26120;
 }
 .step.step-finish:not(:first-child)::before {
-    background: #f26120; 
+  background: #f26120;
 }
